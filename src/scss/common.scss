@@ -1,0 +1,15 @@
+@import "vars";
+
+/* sass */
+
+html.csstransitions {
+  ons-icon {}
+  h1 {
+    color: $color-title;
+    transform: rotate(30deg);
+    text-align: center;
+  }
+  b {
+    color: blue;
+  }
+}

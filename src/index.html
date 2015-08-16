@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello, world</title>
+  <link rel="stylesheet" href="css/app.min.css">
+  <script src="js/app.min.js"></script>
+  <script>
+  app = {
+    config: {},
+    fn: {
+      init: function() {
+
+        ons.bootstrap();
+        ons.ready(function() {
+
+
+        });
+
+      }
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <ons-navigator animation="slide" var="app.navi">
+    <ons-page>
+      <ons-toolbar>
+        <div class="center">Title</div>
+      </ons-toolbar>
+      <p style="text-align: center">
+        <ons-button modifier="light" ng-click="app.navi.pushPage('page.html');">Push</ons-button>
+      </p>
+      <div style="text-align: center">
+        <br>
+        <div style="color: #666">
+          <div style="line-height: 70px">
+
+            <ons-icon icon="ion-arrow-up-a" size="40px" fixed-width="true"></ons-icon>
+
+            <ons-icon icon="ion-navicon" size="40px" fixed-width="true"></ons-icon>
+
+            <ons-icon icon="ion-plus-circled" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="ion-funnel" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="ion-compass" size="40px" fixed-width="true"></ons-icon>
+          </div>
+          <div style="line-height: 70px">
+            <ons-icon icon="ion-briefcase" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="ion-pie-graph" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="ion-xbox" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="ion-ios-help" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="ion-social-twitter" size="40px" fixed-width="true"></ons-icon>
+          </div>
+          <br>
+          <br>
+          <div style="line-height: 70px">
+            <ons-icon icon="desktop" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="bars" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="adjust" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="code" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="circle" size="40px" fixed-width="true"></ons-icon>
+          </div>
+          <div style="line-height: 70px">
+            <ons-icon icon="apple" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="css3" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="facebook" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="github" size="40px" fixed-width="true"></ons-icon>
+            <ons-icon icon="cog" size="40px" fixed-width="true"></ons-icon>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div style="color: #666">
+          <div style="line-height: 70px">
+            <ons-icon icon="github" size="40px" rotate="90" fixed-width="true"></ons-icon>
+            <ons-icon icon="github" size="40px" rotate="180" fixed-width="true"></ons-icon>
+            <ons-icon icon="github" size="40px" rotate="270" fixed-width="true"></ons-icon>
+            <ons-icon icon="github" size="40px" rotate="0" fixed-width="true"></ons-icon>
+            <ons-icon icon="github" size="40px" rotate="90" fixed-width="true"></ons-icon>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div style="color: #666">
+          <div style="line-height: 40px">
+            <ons-icon icon="spinner" size="40px" spin="true" fixed-width="true"></ons-icon>
+            <ons-icon icon="cog" size="40px" spin="true" fixed-width="true"></ons-icon>
+            <ons-icon icon="refresh" size="40px" spin="true" fixed-width="true"></ons-icon>
+            <ons-icon icon="rotate-right" size="40px" spin="true" fixed-width="true"></ons-icon>
+            <ons-icon icon="rotate-left" size="40px" spin="true" fixed-width="true"></ons-icon>
+          </div>
+        </div>
+      </div>
+    </ons-page>
+  </ons-navigator>
+
+
+  <ons-template id="page.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="center">Hi</div>
+      </ons-toolbar>
+      <h1>Hello</h1>
+      <div class="bottom-bar">
+        <div class="bottom-bar__line-height" style="text-align:center">Bottom Toolbar</div>
+      </div>
+    </ons-page>
+  </ons-template>
+  <script>
+  app.fn.init();
+  </script>
+</body>
+
+</html>
