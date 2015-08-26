@@ -377,7 +377,7 @@ module.exports = function(grunt) {
           delete temporary or generated files 
           =====================================================
       */
-      dest_dir: ["<%= globalConfig.dest_dir %>/**/*.*"],
+      dest_dir: ["<%= globalConfig.dest_dir %>/**/*.*","!*.gitignore"],
 
       css: [
         "<%= globalConfig.dest_dir %>/css/**/*.css", "!<%= globalConfig.dest_dir %>/css/**/*.min.css",
