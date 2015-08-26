@@ -4,7 +4,6 @@
   "description": "A simple web app",
   "author": "Roberto Chiaveri",
   "license": "https://spdx.org/licenses/GPL-2.0.html",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
