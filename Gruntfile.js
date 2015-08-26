@@ -47,7 +47,7 @@ module.exports = function(grunt) {
       */
       fonts: { // copy font to build directory
         files: [{
-          src: '<%= globalConfig.src_dir %>/fonts/**/fonts/**/*',
+          src: '<%= globalConfig.src_dir %>/fonts/**/fonts/**/*.{eot,svg,ttf,woff}',
           dest: '<%= globalConfig.dest_dir %>/fonts/',
           expand: true,
           flatten: true
@@ -191,7 +191,7 @@ module.exports = function(grunt) {
         '<%= globalConfig.src_dir %>/scss/**/*.scss',
       ],
       options: {
-        config: 'scss-lint.yml',
+        config: '.scss-lint.yml',
         compact: true,
         colorizeOutput: true,
         force: true
@@ -341,7 +341,7 @@ module.exports = function(grunt) {
       ],
       options: {
 
-       config: ".jsbeautifyrc"
+        config: ".jsbeautifyrc"
       }
     },
 
@@ -377,16 +377,20 @@ module.exports = function(grunt) {
           delete temporary or generated files 
           =====================================================
       */
-      dest_dir: ["<%= globalConfig.dest_dir %>/**/*.*","!*.gitignore"],
+      dest_dir: ["<%= globalConfig.dest_dir %>/**/*.*", "!*.gitignore"],
 
       css: [
-        "<%= globalConfig.dest_dir %>/css/**/*.css", "!<%= globalConfig.dest_dir %>/css/**/*.min.css",
-        "<%= globalConfig.dest_dir %>/css/**/*.map", "!<%= globalConfig.dest_dir %>/css/**/*.min.css.map",
+        "<%= globalConfig.dest_dir %>/css/**/*.css",
+        "!<%= globalConfig.dest_dir %>/css/**/*.min.css",
+        "<%= globalConfig.dest_dir %>/css/**/*.map",
+        "!<%= globalConfig.dest_dir %>/css/**/*.min.css.map",
       ],
 
       js: [
-        "<%= globalConfig.dest_dir %>/js/**/*.js", "!<%= globalConfig.dest_dir %>/js/**/*.min.js",
-        "<%= globalConfig.dest_dir %>/js/**/*.map", "!<%= globalConfig.dest_dir %>/js/**/*.min.js.map"
+        "<%= globalConfig.dest_dir %>/js/**/*.js",
+        "!<%= globalConfig.dest_dir %>/js/**/*.min.js",
+        "<%= globalConfig.dest_dir %>/js/**/*.map",
+        "!<%= globalConfig.dest_dir %>/js/**/*.min.js.map"
       ]
     },
 
@@ -428,7 +432,9 @@ module.exports = function(grunt) {
           =====================================================
       */
       bsFiles: {
-        src: ['<%= globalConfig.dest_dir %>/css/*.css', '<%= globalConfig.dest_dir %>/*.html']
+        src: ['<%= globalConfig.dest_dir %>/css/*.css',
+          '<%= globalConfig.dest_dir %>/*.html'
+        ]
       },
       options: {
         watchTask: true,
@@ -475,3 +481,4 @@ module.exports = function(grunt) {
 
 
 };
+
