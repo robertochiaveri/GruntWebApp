@@ -1,9 +1,9 @@
 {
-  "name": "OnsenUIStarterKit",
+  "name": "WebApp",
   "version": "0.0.1",
-  "description": "A Grunt-powered, SASS-based, performance-driven starter kit to build OnsenUI apps",
+  "description": "A simple web app",
   "author": "Roberto Chiaveri",
-  "license": "UNLICENSED",
+  "license": "https://spdx.org/licenses/GPL-2.0.html",
   "private": true,
   "ignore": [
     "**/.*",
@@ -13,7 +13,6 @@
     "tests"
   ],
   "dependencies": {
-    "modernizr": "~2.8.3",
-    "onsenui": "~1.3.8"
+    "modernizr": "~2.8.3"
   }
 }
