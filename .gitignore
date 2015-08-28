@@ -1,5 +1,20 @@
+# ===================
+# MacOSX hidden files
+# ===================
+
 .DS_Store
+
+
+# ====
+# SASS
+# ====
+
+*.sass-cache*
+
+
+# ============
+# Dependencies
+# ============
+
 node_modules
 bower_components
-.tmp 
-.sass-cache 
