@@ -1,25 +1,25 @@
 module.exports = function(grunt) {
+  "use strict";
 
 
-
-  grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks("grunt-contrib-htmlmin");
   grunt.loadNpmTasks("grunt-modernizr");
-  grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-prettysass');
-  grunt.loadNpmTasks('grunt-postcss');
+  grunt.loadNpmTasks("grunt-contrib-sass");
+  grunt.loadNpmTasks("grunt-prettysass");
+  grunt.loadNpmTasks("grunt-postcss");
   grunt.loadNpmTasks("csswring");
-  grunt.loadNpmTasks('grunt-scss-lint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-browser-sync');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-cleanempty');
-  grunt.loadNpmTasks('grunt-text-replace');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks("grunt-scss-lint");
+  grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-browser-sync");
+  grunt.loadNpmTasks("grunt-contrib-concat");
+  grunt.loadNpmTasks("grunt-contrib-copy");
+  grunt.loadNpmTasks("grunt-contrib-clean");
+  grunt.loadNpmTasks("grunt-cleanempty");
+  grunt.loadNpmTasks("grunt-text-replace");
+  grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-jsbeautifier");
   grunt.loadNpmTasks("grunt-strip-json-comments");
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks("grunt-contrib-imagemin");
 
   grunt.initConfig({
 
@@ -29,17 +29,17 @@ module.exports = function(grunt) {
       Global options
       =====================================================
     */
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: grunt.file.readJSON("package.json"),
 
     globalConfig: {
-      src_dir: 'src',
-      bower_dir: 'bower_components',
-      dest_dir: 'build'
+      srcDir: "src",
+      bowerDir: "bower_components",
+      destDir: "build"
     },
 
 
 
-    'copy': {
+    "copy": {
       /* 
         =====================================================
         grunt-contrib-copy copy files 
@@ -47,15 +47,15 @@ module.exports = function(grunt) {
       */
       fonts: { // copy font to build directory
         files: [{
-          src: '<%= globalConfig.src_dir %>/fonts/**/fonts/**/*.{eot,svg,ttf,woff}',
-          dest: '<%= globalConfig.dest_dir %>/fonts/',
+          src: "<%= globalConfig.srcDir %>/fonts/**/fonts/**/*.{eot,svg,ttf,woff}",
+          dest: "<%= globalConfig.destDir %>/fonts/",
           expand: true,
           flatten: true
         }]
       }
     },
 
-    'replace': {
+    "replace": {
       /* 
         =====================================================
         grunt-text-replace replaces strings in files
@@ -63,17 +63,17 @@ module.exports = function(grunt) {
       */
       build: {
         src: [
-          /*'<%= globalConfig.dest_dir %>/subdir/*.ext'*/
+          /*"<%= globalConfig.destDir %>/subdir/*.ext"*/
         ],
         overwrite: true,
         replacements: [{
-          from: '/* something */',
-          to: '/* something else*/'
+          from: "/* something */",
+          to: "/* something else*/"
         }]
       }
     },
 
-    'htmlmin': {
+    "htmlmin": {
       /* 
         =====================================================
         grunt-contrib-htmlmin minifies HTML
@@ -88,16 +88,16 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= globalConfig.src_dir %>/',
-          src: ['**/*.html'],
-          dest: '<%= globalConfig.dest_dir %>/',
-          ext: '.html',
-          extDot: 'first'
+          cwd: "<%= globalConfig.srcDir %>/",
+          src: ["**/*.html","!fonts/**"],
+          dest: "<%= globalConfig.destDir %>/",
+          ext: ".html",
+          extDot: "first"
         }]
       }
     },
 
-    'modernizr': {
+    "modernizr": {
       /* 
         =====================================================
         grunt-modernizr sifts through your project files, 
@@ -107,20 +107,21 @@ module.exports = function(grunt) {
       */
       build: {
 
-        // [REQUIRED] Path to the build you're using for development.
-        "devFile": "<%= globalConfig.bower_dir %>/modernizr/modernizr.js",
+        // [REQUIRED] Path to the build you"re using for development.
+        "devFile": "<%= globalConfig.bowerDir %>/modernizr/modernizr.js",
 
         // When parseFiles = true, this task will crawl all *.js, *.css, *.scss and *.sass files,
         // except files that are in node_modules/.
         // You can override this by defining a "files" array below.
         "files": {
           "src": [
-            "<%= globalConfig.src_dir %>/scss/**/*.scss"
+            "<%= globalConfig.srcDir %>/scss/**/*.scss",
+            "<%= globalConfig.srcDir %>/js/**/*.js"
           ]
         },
 
         // Path to save out the built file.
-        "outputFile": "<%= globalConfig.dest_dir %>/js/modernizr-custom.js",
+        "outputFile": "<%= globalConfig.destDir %>/js/modernizr-custom.js",
 
         // Based on default settings on http://modernizr.com/download/
         "extra": {
@@ -166,7 +167,7 @@ module.exports = function(grunt) {
       }
     },
 
-    'prettysass': {
+    "prettysass": {
       /* 
           =====================================================
           Normalizes indentation in SASS files
@@ -176,11 +177,11 @@ module.exports = function(grunt) {
         alphabetize: false
       },
       app: {
-        src: ['<%= globalConfig.src_dir %>/scss/**/*.scss']
+        src: ["<%= globalConfig.srcDir %>/scss/**/*.scss"]
       },
     },
 
-    'scsslint': {
+    "scsslint": {
       /* 
         =====================================================
         grunt-scss-lint lints the scss source
@@ -188,17 +189,17 @@ module.exports = function(grunt) {
       */
 
       build: [
-        '<%= globalConfig.src_dir %>/scss/**/*.scss',
+        "<%= globalConfig.srcDir %>/scss/**/*.scss",
       ],
       options: {
-        config: '.scss-lint.yml',
+        config: ".scss-lint.yml",
         compact: true,
         colorizeOutput: true,
         force: true
       },
     },
 
-    'sass': {
+    "sass": {
       /* 
         =====================================================
         grunt-contrib-sass compiles .scss files (Sass) into
@@ -211,23 +212,23 @@ module.exports = function(grunt) {
       */
       dist: {
         options: {
-          style: 'compressed',
-          sourcemap: 'inline',
+          style: "compressed",
+          sourcemap: "inline",
           trace: true,
           lineNumbers: false
         },
         files: [{
           expand: true,
-          cwd: '<%= globalConfig.src_dir %>/scss/',
-          src: ['**/*.scss'],
-          dest: '<%= globalConfig.dest_dir %>/css/',
-          ext: '.compiled.css',
-          extDot: 'first'
+          cwd: "<%= globalConfig.srcDir %>/scss/",
+          src: ["**/*.scss"],
+          dest: "<%= globalConfig.destDir %>/css/",
+          ext: ".compiled.css",
+          extDot: "first"
         }]
       }
     },
 
-    'concat': {
+    "concat": {
       /* 
         =====================================================
         grunt-contrib-concat concatenates styles and scripts
@@ -235,30 +236,29 @@ module.exports = function(grunt) {
       */
       options: {
         sourceMap: true,
-        sourceMapStyle: 'file',
+        sourceMapStyle: "file",
         stripBanners: false,
-        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-          '<%= grunt.template.today("yyyy-mm-dd") %> */',
+        banner: "/*! <%= pkg.name %> - v<%= pkg.version %> - " +
+          "<%= grunt.template.today('yyyy-mm-dd') %> */",
       },
 
       css: {
         src: [
-          '<%= globalConfig.dest_dir %>/css/main.compiled.css'
+          "<%= globalConfig.destDir %>/css/main.compiled.css"
         ],
-        dest: '<%= globalConfig.dest_dir %>/css/concat.css',
+        dest: "<%= globalConfig.destDir %>/css/concat.css",
       },
 
       js: {
         src: [
-          '<%= globalConfig.dest_dir %>/js/modernizr-custom.js',
-          '<%= globalConfig.src_dir %>/js/plugins.js',
-          '<%= globalConfig.src_dir %>/js/scripts.js'
+          "<%= globalConfig.destDir %>/js/modernizr-custom.js",
+          "<%= globalConfig.srcDir %>/js/app.js"
         ],
-        dest: '<%= globalConfig.dest_dir %>/js/concat.js'
+        dest: "<%= globalConfig.destDir %>/js/concat.js"
       }
     },
 
-    'postcss': {
+    "postcss": {
       /* 
           =====================================================
           grunt-postCSS is a tool for transforming CSS with JS 
@@ -274,33 +274,33 @@ module.exports = function(grunt) {
       options: {
         map: true,
         processors: [
-          require('pixrem')(), // add fallbacks for rem units
-          require('autoprefixer-core')({ // add vendor prefixes
+          require("pixrem")(), // add fallbacks for rem units
+          require("autoprefixer-core")({ // add vendor prefixes
             browsers: [
-              'and_chr >41',
-              'chrome >41',
-              'and_uc >9.9',
-              'firefox >38',
-              'ie >9',
-              'ie_mob >9',
-              'edge >1',
-              'ios_saf >6',
-              'safari >7'
+              "and_chr >41",
+              "chrome >41",
+              "and_uc >9.9",
+              "firefox >38",
+              "ie >9",
+              "ie_mob >9",
+              "edge >1",
+              "ios_saf >6",
+              "safari >7"
             ]
           }),
-          require('csswring')({
+          require("csswring")({
             map: true
           })
-          //                    require('cssnano')()
+          //                    require("cssnano")()
         ]
       },
       dist: {
-        src: '<%= globalConfig.dest_dir %>/css/concat.css',
-        dest: '<%= globalConfig.dest_dir %>/css/app.min.css'
+        src: "<%= globalConfig.destDir %>/css/concat.css",
+        dest: "<%= globalConfig.destDir %>/css/app.min.css"
       }
     },
 
-    'uglify': {
+    "uglify": {
       /* 
           =====================================================
           JavaScript minification and obfuscation
@@ -308,12 +308,12 @@ module.exports = function(grunt) {
       */
       js: {
         files: {
-          '<%= globalConfig.dest_dir %>/js/app.min.js': '<%= globalConfig.dest_dir %>/js/concat.js'
+          "<%= globalConfig.destDir %>/js/app.min.js": "<%= globalConfig.destDir %>/js/concat.js"
         },
         options: {
 
           /* 
-            this should allow minification of Angular code; if it doesn't, try ngAnnotate grunt plugin. 
+            this should allow minification of Angular code; if it doesn"t, try ngAnnotate grunt plugin. 
             https://www.reddit.com/r/angularjs/comments/2dvh97/why_exactly_cant_you_uglify_mangletrue_angular/
             https://www.reddit.com/r/angularjs/comments/2dvh97/why_exactly_cant_you_uglify_mangletrue_angular/
             http://www.sitepoint.com/5-minutes-to-min-safe-angular-code-with-grunt/
@@ -323,40 +323,42 @@ module.exports = function(grunt) {
           ASCIIOnly: true,
 
           sourceMap: true,
-          sourceMapIn: '<%= globalConfig.dest_dir %>/js/concat.js.map'
+          sourceMapIn: "<%= globalConfig.destDir %>/js/concat.js.map"
         }
       }
     },
 
-    'jsbeautifier': {
+    "jsbeautifier": {
       /* 
           =====================================================
           Normalizes indentation in JS and HTML files
           =====================================================
       */
-      files: [
-        "<%= globalConfig.src_dir %>/js/**/*.js",
-        "<%= globalConfig.src_dir %>/**/*.json",
-        "<%= globalConfig.src_dir %>/**/*.html"
-      ],
-      options: {
-
-        config: ".jsbeautifyrc"
+      build: {
+        src: [
+          "<%= globalConfig.srcDir %>/js/**/*.js",
+          "<%= globalConfig.srcDir %>/**/*.json",
+          "<%= globalConfig.srcDir %>/**/*.html",
+          "!<%= globalConfig.srcDir %>/fonts/**"
+        ],
+        options: {
+          config: ".jsbeautifyrc"
+        }
       }
     },
 
-    'stripJsonComments': {
+    "stripJsonComments": {
       build: {
         files: [{
           expand: true,
-          cwd: '<%= globalConfig.src_dir %>/',
-          src: ['**/*.json'],
-          dest: '<%= globalConfig.dest_dir %>/'
+          cwd: "<%= globalConfig.srcDir %>/",
+          src: ["**/*.json","!fonts/**"],
+          dest: "<%= globalConfig.destDir %>/"
         }]
       }
     },
 
-    'imagemin': {
+    "imagemin": {
       build: {
         options: {
           optimizationLevel: 3,
@@ -364,67 +366,67 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= globalConfig.src_dir %>/',
-          src: ['**/*.{png,jpg,gif}'],
-          dest: '<%= globalConfig.dest_dir %>/'
+          cwd: "<%= globalConfig.srcDir %>/",
+          src: ["**/*.{png,jpg,gif}"],
+          dest: "<%= globalConfig.destDir %>/"
         }]
       }
     },
 
-    'clean': {
+    "clean": {
       /* 
           =====================================================
           delete temporary or generated files 
           =====================================================
       */
-      dest_dir: ["<%= globalConfig.dest_dir %>/**/*.*", "!*.gitignore"],
+      destDir: ["<%= globalConfig.destDir %>/**/*.*", "!*.gitignore"],
 
       css: [
-        "<%= globalConfig.dest_dir %>/css/**/*.css",
-        "!<%= globalConfig.dest_dir %>/css/**/*.min.css",
-        "<%= globalConfig.dest_dir %>/css/**/*.map",
-        "!<%= globalConfig.dest_dir %>/css/**/*.min.css.map",
+        "<%= globalConfig.destDir %>/css/**/*.css",
+        "!<%= globalConfig.destDir %>/css/**/*.min.css",
+        "<%= globalConfig.destDir %>/css/**/*.map",
+        "!<%= globalConfig.destDir %>/css/**/*.min.css.map",
       ],
 
       js: [
-        "<%= globalConfig.dest_dir %>/js/**/*.js",
-        "!<%= globalConfig.dest_dir %>/js/**/*.min.js",
-        "<%= globalConfig.dest_dir %>/js/**/*.map",
-        "!<%= globalConfig.dest_dir %>/js/**/*.min.js.map"
+        "<%= globalConfig.destDir %>/js/**/*.js",
+        "!<%= globalConfig.destDir %>/js/**/*.min.js",
+        "<%= globalConfig.destDir %>/js/**/*.map",
+        "!<%= globalConfig.destDir %>/js/**/*.min.js.map"
       ]
     },
 
-    'cleanempty': {
+    "cleanempty": {
       options: {
         folders: true,
         files: false,
         noJunk: true
       },
-      src: ['build/**/*']
+      src: ["build/**/*"]
     },
 
-    'watch': {
+    "watch": {
       /* 
           =====================================================
           Run tasks whenever watched files change
           =====================================================
       */
       html: {
-        files: ['<%= globalConfig.src_dir %>/**/*.html'],
-        tasks: ['jsbeautifier', 'htmlmin']
+        files: ["<%= globalConfig.srcDir %>/**/*.html"],
+        tasks: ["jsbeautifier", "htmlmin"]
       },
       css: {
-        // We watch and compile sass files but don't live reload here
-        files: ['<%= globalConfig.src_dir %>/**/*.scss'],
-        tasks: ['stylesheets']
+        // We watch and compile sass files but don"t live reload here
+        files: ["<%= globalConfig.srcDir %>/**/*.scss"],
+        tasks: ["stylesheets"]
       },
       js: {
-        files: ['<%= globalConfig.src_dir %>/**/*.{js,json}'],
-        tasks: ['javascripts']
+        files: ["<%= globalConfig.srcDir %>/**/*.{js,json}"],
+        tasks: ["javascripts"]
       }
     },
 
-    'browserSync': {
+    "browserSync": {
       /* 
           =====================================================
           Live reload the browser, synchs URLs, interactions 
@@ -432,14 +434,14 @@ module.exports = function(grunt) {
           =====================================================
       */
       bsFiles: {
-        src: ['<%= globalConfig.dest_dir %>/css/*.css',
-          '<%= globalConfig.dest_dir %>/*.html'
+        src: ["<%= globalConfig.destDir %>/css/*.css",
+          "<%= globalConfig.destDir %>/*.html"
         ]
       },
       options: {
         watchTask: true,
         server: {
-          baseDir: "./<%= globalConfig.dest_dir %>/"
+          baseDir: "./<%= globalConfig.destDir %>/"
         }
       }
     }
@@ -448,26 +450,26 @@ module.exports = function(grunt) {
 
 
 
-  grunt.registerTask('javascripts', [
-    'jsbeautifier',
-    'stripJsonComments',
-    'concat:js',
-    'uglify:js',
-    'clean:js'
+  grunt.registerTask("javascripts", [
+    "jsbeautifier",
+    "stripJsonComments",
+    "concat:js",
+    "uglify:js",
+    "clean:js"
   ]);
 
-  grunt.registerTask('stylesheets', [
-    'prettysass',
-    'sass',
-    'scsslint',
-    'concat:css',
-    'replace',
-    'postcss',
-    'clean:css',
+  grunt.registerTask("stylesheets", [
+    "prettysass",
+    "sass",
+    "scsslint",
+    "concat:css",
+    "replace",
+    "postcss",
+    "clean:css",
   ]);
 
-  grunt.registerTask('default', [
-    "clean:dest_dir",
+  grunt.registerTask("default", [
+    "clean:destDir",
     "cleanempty",
     "htmlmin",
     "imagemin",
