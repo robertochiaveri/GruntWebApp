@@ -418,11 +418,11 @@ module.exports = function(grunt) {
       css: {
         // We watch and compile sass files but don"t live reload here
         files: ["<%= globalConfig.srcDir %>/**/*.scss"],
-        tasks: ["stylesheets"]
+        tasks: ["modernizr","stylesheets"]
       },
       js: {
         files: ["<%= globalConfig.srcDir %>/**/*.{js,json}"],
-        tasks: ["javascripts"]
+        tasks: ["modernizr","javascripts"]
       }
     },
 
